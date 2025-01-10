@@ -1,56 +1,21 @@
 # icm
 icm analytic
 
-<p align="center">
-  <img src="kid.png" width="350" title="Original Image"/>
-  <img src="matte.png" width="350" title="IndexNet Matting"/>
-</p>
 
-This repository includes the official implementation of IndexNet Matting for deep image matting, presented in our paper:
-
-**[Indices Matter: Learning to Index for Deep Image Matting](https://arxiv.org/abs/1908.00672)**
-
-Proc. IEEE/CVF International Conference on Computer Vision (ICCV), 2019
-
-[Hao Lu](https://sites.google.com/site/poppinace/)<sup>1</sup>, Yutong Dai<sup>1</sup>, [Chunhua Shen](http://cs.adelaide.edu.au/~chhshen/)<sup>1</sup>, Songcen Xu<sup>2</sup>
-
-<sup>1</sup>The University of Adelaide, Australia
-
-<sup>2</sup>Noah's Ark Lab, Huawei Technologies
-
-## Updates
-- 8 June 2020: The [journal version](https://arxiv.org/abs/1908.09895v2) of this work has been accepted to TPAMI! We further report many interesting results on other dense prediction tasks and extend our insights on generic upsampling operators.
-- 4 April 2020: Training code is released!
-- 16 Aug 2019: The supplementary material is finalized and released!
-- 5 Aug 2019: Inference code of IndexNet Matting is released!
+这是对IN-CONTEXT-MATTING上下文模型在图像抠图中的应用的复现工程
 
 
 
 ## Installation
-Our code has been tested on Python 3.6.8/3.7.2 and PyTorch 0.4.1/1.1.0. Please follow the official instructions to configure your environment. See other required packages in `requirements.txt`.
+所有文件均上传在master分支，readme文件在main分支里，若你看不到工程请把左上方的main改成master,您可以将该工程文件全部下载下来，然后部署环境，环境follow the stable diffusion 2 ，具体参数在environment.yml中，您可以通过conda命令创建部署代码所需的环境
+
+您需要在hugging face中自行下载stable diffusion 2到本地，并放置在根目录中，
 
 ## A Quick Demo
-We have included our pretrained model in `./pretrained` and several images and trimaps from the Adobe Image Dataset in `./examples`. Run the following command for a quick demonstration of IndexNet Matting. The inferred alpha mattes are in the folder `./examples/mattes`.
-
-    python scripts/demo.py
+在终端运行以下脚本
+python eval.py --checkpoint PATH_TO_MODEL --save_path results/ --config config/eval.yaml
     
-## Prepare Your Data
-1. Please contact Brian Price (bprice@adobe.com) requesting for the Adobe Image Matting dataset;
-2. Composite the dataset using provided foreground images, alpha mattes, and background images from the COCO and Pascal VOC datasets. I slightly modified the provided `compositon_code.py` to improve the efficiency, included in the `scripts` folder. Note that, since the image resolution is quite high, the dataset will be over 100 GB after composition.
-3. The final path structure used in my code looks like this:
 
-````
-$PATH_TO_DATASET/Combined_Dataset
-├──── Training_set
-│    ├──── alpha (431 images)
-│    ├──── fg (431 images)
-│    └──── merged (43100 images)
-├──── Test_set
-│    ├──── alpha (50 images)
-│    ├──── fg (50 images)
-│    ├──── merged (1000 images)
-│    └──── trimaps (1000 images)
-````
 
 ## Inference
 Run the following command to do inference of IndexNet Matting/Deep Matting on the Adobe Image Matting dataset:
@@ -92,6 +57,3 @@ If you find this work or code useful for your research, please cite:
   year={2020}
 }
 ```
-
-## Permission and Disclaimer
-This code is only for non-commercial purposes. As covered by the ADOBE IMAGE DATASET LICENSE AGREEMENT, the trained models included in this repository can only be used/distributed for non-commercial purposes. Anyone who violates this rule will be at his/her own risk.
