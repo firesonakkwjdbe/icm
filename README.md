@@ -17,43 +17,7 @@ python eval.py --checkpoint PATH_TO_MODEL --save_path results/ --config config/e
     
 
 
-## Inference
-Run the following command to do inference of IndexNet Matting/Deep Matting on the Adobe Image Matting dataset:
-
-    python scripts/demo_indexnet_matting.py
-    
-    python scripts/demo_deep_matting.py
-    
-Please note that:
-- `DATA_DIR` should be modified to your dataset directory;
-- Images used in Deep Matting has been downsampled by 1/2 to enable the GPU inference. To reproduce the full-resolution results, the inference can be executed on CPU, which takes about 2 days.
-
-Here is the results of IndexNet Matting and our reproduced results of Deep Matting on the Adobe Image Dataset:
-
-| Methods | Remark | #Param. | GFLOPs | SAD | MSE | Grad | Conn | Model |
-| :--: | :--: | :--: | :--: | :--: | :--: | :--: | :--: | :--: |
-| Deep Matting | Paper | -- | -- | 54.6 | 0.017 | 36.7 | 55.3 | -- |
-| Deep Matting | Re-implementation | 130.55M | 32.34 | 55.8 | 0.018 | 34.6 | 56.8 | [Google Drive (522MB)](https://drive.google.com/open?id=1Uws86AGkFqV2S7XkNuR8dz5SOttxh7AY) |
-| IndexNet Matting | Ours | 8.15M | 6.30 | 45.8 | 0.013 | 25.9 | 43.7 | Included |
-
-* The original paper reported that there were 491 images, but the released dataset only includes 431 images. Among missing images, 38 of them were said double counted, and the other 24 of them were not released. As a result, we at least use 4.87% fewer training data than the original paper. Thus, the small differerce in performance should be normal.
-* The evaluation code (Matlab code implemented by the Deep Image Matting's author) placed in the ``./evaluation_code`` folder is used to report the final performance for a fair comparion. We have also implemented a python version. The numerial difference is subtle.
 
 
-## Citation
-If you find this work or code useful for your research, please cite:
-```
-@inproceedings{hao2019indexnet,
-  title={Indices Matter: Learning to Index for Deep Image Matting},
-  author={Lu, Hao and Dai, Yutong and Shen, Chunhua and Xu, Songcen},
-  booktitle={Proc. IEEE/CVF International Conference on Computer Vision (ICCV)},
-  year={2019}
-}
-
-@article{hao2020indexnet,
-  title={Index Networks},
-  author={Lu, Hao and Dai, Yutong and Shen, Chunhua and Xu, Songcen},
-  journal={IEEE Transactions on Pattern Analysis and Machine Intelligence},
-  year={2020}
-}
-```
+## output
+成功运行后会输出测试集的alpha蒙版，您可以在根目录的mse.py,sad.py,GRad.py,CONN.py，分别对应着MSE,SAD,GRAD,CONN性能分析指标，运行这些脚本，可得到该指标下的数据表现，注意需要修改各指标.py中对应的result文件存放路径
