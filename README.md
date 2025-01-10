@@ -1,6 +1,5 @@
 # icm
 icm analytic
-# IndexNet Matting
 
 <p align="center">
   <img src="kid.png" width="350" title="Original Image"/>
@@ -26,10 +25,6 @@ Proc. IEEE/CVF International Conference on Computer Vision (ICCV), 2019
 - 5 Aug 2019: Inference code of IndexNet Matting is released!
 
 
-## Highlights
-- **Simple and effective:** IndexNet Matting only deals with the upsampling stage but exhibits at least 16.1% relative improvements, compared to the Deep Matting baseline;
-- **Memory-efficient:** IndexNet Matting builds upon MobileNetV2. It can process an image with a resolution up to 1980x1080 on a single GTX 1070;
-- **Easy to use:** This framework also includes our re-implementation of Deep Matting and the pretrained model presented in the Adobe's CVPR17 paper.
 
 ## Installation
 Our code has been tested on Python 3.6.8/3.7.2 and PyTorch 0.4.1/1.1.0. Please follow the official instructions to configure your environment. See other required packages in `requirements.txt`.
@@ -79,13 +74,6 @@ Here is the results of IndexNet Matting and our reproduced results of Deep Matti
 * The original paper reported that there were 491 images, but the released dataset only includes 431 images. Among missing images, 38 of them were said double counted, and the other 24 of them were not released. As a result, we at least use 4.87% fewer training data than the original paper. Thus, the small differerce in performance should be normal.
 * The evaluation code (Matlab code implemented by the Deep Image Matting's author) placed in the ``./evaluation_code`` folder is used to report the final performance for a fair comparion. We have also implemented a python version. The numerial difference is subtle.
 
-## Training
-Run the following command to train IndexNet Matting:
-
-    sh train.sh
-    
-- `--data-dir` should be modified to your dataset directory.
-- I was able to train the model on a single GTX 1080ti (12 GB). The training takes about 5 days. The current bottleneck appears to be the dataloader.
 
 ## Citation
 If you find this work or code useful for your research, please cite:
