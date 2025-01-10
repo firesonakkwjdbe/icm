@@ -10,7 +10,11 @@ icm analytic
 所有文件均上传在master分支，readme文件在main分支里，若你看不到工程请把左上方的main改成master,您可以将该工程文件全部下载下来，然后部署环境，环境follow the stable diffusion 2 ，具体参数在environment.yml中，您可以通过conda命令创建部署代码所需的环境
 
 您需要在hugging face中自行下载stable diffusion 2到本地，并放置在根目录中，
+## Data
 
+您可以转到master分支，在incontextmatting文件夹里找到另一个readme文件，并从中下载数据集ICM57
+
+ 
 ## A Quick Demo
 在终端运行以下脚本
 python eval.py --checkpoint PATH_TO_MODEL --save_path results/ --config config/eval.yaml
